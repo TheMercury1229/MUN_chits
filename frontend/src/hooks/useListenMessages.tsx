@@ -4,7 +4,8 @@ import { useConversation } from "../zustand/useConversation";
 
 const useListenMessages = () => {
   const { socket } = useSocketContext();
-  const { setConversations, conversations,addMessageToConversation } = useConversation();
+  const { setConversations, conversations, addMessageToConversation } =
+    useConversation();
 
   useEffect(() => {
     if (!socket) return;
@@ -57,10 +58,11 @@ const useListenMessages = () => {
           sender: {
             id: parsedMessage.sender.id,
             username: parsedMessage.sender.username,
+            portfolio: parsedMessage.sender.portfolio,
           },
         };
         // Immutable state update
-        if(parsedMessage.isViaEB){
+        if (parsedMessage.isViaEB) {
           setConversations((prevConversations: any[]) =>
             prevConversations.map((conversation) =>
               conversation.conversationId === parsedMessage.conversationId
@@ -71,7 +73,7 @@ const useListenMessages = () => {
                 : conversation
             )
           );
-        }else{
+        } else {
           setConversations((prevConversations: any[]) =>
             prevConversations.map((conversation) =>
               conversation.id === parsedMessage.conversationId
@@ -93,10 +95,15 @@ const useListenMessages = () => {
       try {
         const parsedMessage = JSON.parse(message);
 
-        const findConv = conversations.find((conv: any) => conv.id === parsedMessage.conversationId);
-        if(!findConv){
-          setConversations((prevConversations: any[]) =>[...prevConversations, parsedMessage]);
-        }else{
+        const findConv = conversations.find(
+          (conv: any) => conv.id === parsedMessage.conversationId
+        );
+        if (!findConv) {
+          setConversations((prevConversations: any[]) => [
+            ...prevConversations,
+            parsedMessage,
+          ]);
+        } else {
           addMessageToConversation(parsedMessage.conversationId, parsedMessage);
         }
       } catch (error) {
