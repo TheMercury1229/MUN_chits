@@ -129,6 +129,7 @@ const CreateEntries = () => {
                   <SelectItem value="UNSC">UNSC</SelectItem>
                   <SelectItem value="UNCSW">UNCSW</SelectItem>
                   <SelectItem value="UNODC">UNODC</SelectItem>
+                  <SelectItem value="ECOSOC">ECOSOC</SelectItem>
                   <SelectItem value="IP">IP</SelectItem>
                   <SelectItem value="test">Test</SelectItem>
                 </SelectContent>
