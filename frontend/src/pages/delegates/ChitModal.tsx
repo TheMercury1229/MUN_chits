@@ -28,7 +28,7 @@ const ChitModal = ({
     navigate("/");
   };
   return (
-    <div className="flex flex-col gap-2 w-full divided-y-2  ">
+    <div className="flex flex-col gap-2 w-full divided-y-2 pb-32 ">
       <div className="p-6 relative mb-10">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-semibold">Chit</h2>
