@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useReplyMessage } from "../../hooks/useReplyMessage";
 import { toast } from "sonner";
 import useListenMessages from "../../hooks/useListenMessages";
+import { Textarea } from "../../components/ui/textarea";
 
 const ChitModal = ({
   messages,
@@ -77,18 +78,17 @@ const ChitModal = ({
       </div>
       <div className="fixed bottom-0 border-t-2 border-muted w-full md:w-5/6 p-5 z-50 bg-background shadow-lg">
         <form onSubmit={handleReply}>
-          <div className="relative">
-            <Input
-              type="text"
+          <div className="flex items-center justify-between">
+            <Textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               name="message"
               placeholder="Type a message..."
-              className="p-5 text-lg rounded-lg border border-primary"
+              className="p-5 w-[90%] text-lg rounded-lg border border-primary max-h-36"
             />
             <Button
               disabled={loading}
-              className="absolute py-5 right-0 rounded-tl-0 rounded-bl-0 rounded-tr-lg rounded-br-lg top-1/2 -translate-y-1/2 flex items-center gap-2"
+              className=" py-5  rounded-tl-0 rounded-bl-0 rounded-tr-lg rounded-br-lg  flex items-center gap-2"
             >
               {loading ? (
                 "Sending..."
